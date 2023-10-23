@@ -39,7 +39,7 @@ Build out the navigation, products and cart features.
   - "Add to Cart" button should add that product with a quantity of 1
   - "Load More" button should retrieve the next 6 products and add them to the container
   
-#### Cart
+#### Cart Modal
 
 Implement a custom cart solution that showcases the current state of the cart:
   - Should reflect the currently added products and their quantities
@@ -47,4 +47,4 @@ Implement a custom cart solution that showcases the current state of the cart:
   - The cart should be persistent and the products should remain in the cart upon page reload
 
 ### Querying the mock database
-  Product list can be retrieved from `https://api.escuelajs.co/api/v1/products`, in order to be able to provide pagination, the following params can be used: `offset` and `limit`, for example `https://api.escuelajs.co/api/v1/products?offset=0&limit=10` will show you the very first 6 products of the very first page. Setting `offset=10` will show you the next 6 products – and so on.
+  Product list can be retrieved from `https://api.escuelajs.co/api/v1/products`, in order to be able to provide pagination, the following params can be used: `offset` and `limit`, for example `https://api.escuelajs.co/api/v1/products?offset=0&limit=10` will show you the very first 10 products of the very first page. Setting `offset=10` will show you the next 10 products – and so on.
