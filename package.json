@@ -1,0 +1,19 @@
+{
+  "name": "latori-fe-assignment-remix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrick-schneider-latori/latori-fe-assignment-remix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrick-schneider-latori/latori-fe-assignment-remix/issues"
+  },
+  "homepage": "https://github.com/patrick-schneider-latori/latori-fe-assignment-remix#readme"
+}
