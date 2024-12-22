@@ -1,6 +1,8 @@
+import { React } from "React"
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { getProducts } from "../products";
 import { useLoaderData } from "@remix-run/react";
+import ProductModal from "../modals/product-modal";
 
 export const loader = async ({
     params,
@@ -19,8 +21,12 @@ export default function Index() {
     const products = loaderData.products ?? [];
     
     return (
-        <div>
-
+        <div className="w-full px-4">
+            <div className="w-full max-w-5xl mx-auto py-4 grid grid-cols-3 gap-x-5 gap-y-3">
+                {products.map(p => (
+                    <ProductModal key={p.id} product={p}/>
+                ))}
+            </div>
         </div>
     );
 }
