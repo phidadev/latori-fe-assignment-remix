@@ -5,17 +5,56 @@ import {
   Meta,
   Outlet,
   Scripts,
+  useLoaderData,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage, json } from "@remix-run/node";
 import { addLineItem } from "./utils/cart"
+import { getProductById } from "./products";
 
 export const links = () => [
   { rel: "stylesheet", href: styles },
   { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 ];
 
+export const loader = async ({
+  params,
+  request,
+}) => {
+  // create cookie session storage with cookie "cart" to save current cart state
+  let storage = createCookieSessionStorage({
+    cookie: {
+      name: "cart",
+    },
+  });
+
+  // get session
+  let session = await storage.getSession(request.headers.get("cookie"));
+  // get content of cookie "cart" to get existing cart
+  let cart = session.get("cart") ?? null;
+  // cart line items without purchasables
+  const lineItems = cart?.lineItems ?? [];
+  // array for the filled line items
+  let filledLineItems = [];
+
+  // check if line items exist
+  if(lineItems.length) {
+    // set filled line items with the fetched products
+    filledLineItems = await Promise.all(lineItems.map(async (li) => {
+      return {id: li.id, qty: li.qty, purchasable: await getProductById(li.id)}
+    }));
+  }
+  
+  // returns the filled line items
+  return json({lineItems: filledLineItems});
+};
+
 export default function App() {
+  // get loader data
+  const loaderData = useLoaderData();
+  // set line items from loader data
+  const lineItems = loaderData.lineItems ?? [];
+
   return (
     <html>
       <head>
@@ -79,7 +118,7 @@ export const action = async ({
         // set session cookie cart to updated cart
         session.set("cart", cart);
         
-        // answer with reponse and set cookie header to update cart cookie
+        // answer with response and set cookie header to update cart cookie
         return new Response("", {
           headers: {
             "Set-Cookie": await storage.commitSession(session),
