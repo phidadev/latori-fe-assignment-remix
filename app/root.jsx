@@ -41,3 +41,26 @@ export default function App() {
     </html>
   );
 }
+
+// Root Action
+export const action = async ({
+  request,
+}) => {
+  // get form data
+  const rawFormData = await request.formData();
+  // form data to object
+  const formData = Object.fromEntries(rawFormData);
+  // get intent from form data
+  const intent = formData.intent;
+
+  switch(intent) {
+    // add to cart logic
+    case "add-to-cart": {
+      // get product id from form data
+      const productId = formData.productId;
+      
+      return null;   
+    }break;
+  }
+  return null;   
+}
