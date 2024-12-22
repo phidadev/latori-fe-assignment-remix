@@ -20,13 +20,13 @@ export default function ProductModal({
             <p className="w-full mb-2">{product.title}</p>
             <p className="w-full mb-3 text-gray-700">${product.price}</p>
             {/* Fetcher Form to send data without reloading the page */}
-            <productFetcher.Form method="post" action="/">
+            <productFetcher.Form method="post" action="/" className="mt-auto w-full h-max">
                 {/* intent for the action function */}
                 <input type="hidden" name="intent" value="add-to-cart" />
                 {/* product to add to the cart */}
                 <input type="hidden" name="productId" value={product.id} />
                 {/* button to submit form */}
-                <button type="submit" className="mt-auto w-full py-2 px-4 text-white uppercase bg-black font-thin">
+                <button type="submit" className="w-full py-2 px-4 text-white uppercase bg-black font-thin">
                     {/* update user if action is still in progress */}
                     {isLoading ? "Adding...":"Add to cart"}
                 </button>
