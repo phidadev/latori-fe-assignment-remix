@@ -9,7 +9,7 @@ import {
 } from "@remix-run/react";
 import styles from "./tailwind.css";
 import { createCookieSessionStorage, json } from "@remix-run/node";
-import { addLineItem } from "./utils/cart"
+import { addLineItem, removeLineItem } from "./utils/cart"
 import { getProductById } from "./products";
 import CartModal from "./modals/cart-modal";
 import { useState } from "react";
@@ -132,6 +132,26 @@ export const action = async ({
         })
       }
     }break;
+
+    case "remove-line-item": {
+      // get line item id from form data
+      const lineItemId = formData.lineItemId;
+      // only remove line item if line item id exists
+      if(lineItemId != null) {
+        // remove line item from cart
+        cart = removeLineItem(cart, Number(lineItemId));
+        // set session cookie cart to updated cart
+        session.set("cart", cart);
+        
+        // answer with response and set cookie header to update cart cookie
+        return new Response("", {
+          headers: {
+            "Set-Cookie": await storage.commitSession(session),
+          }
+        })
+      }
+    }break;
   }
-  return null;   
+
+  return json({ok: true});   
 }
