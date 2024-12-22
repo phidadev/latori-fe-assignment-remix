@@ -28,7 +28,7 @@ export default function ProductModal({
                 {/* product to add to the cart */}
                 <input type="hidden" name="productId" value={product.id} />
                 {/* button to submit form */}
-                <button type="submit" className="w-24 md:w-full py-2 md:py-3 px-2 md:px-4 whitespace-nowrap text-white uppercase bg-black font-thin">
+                <button type="submit" disabled={isLoading} className="w-24 md:w-full py-2 md:py-3 px-2 md:px-4 whitespace-nowrap text-white uppercase bg-black font-thin">
                     {/* update user if action is still in progress */}
                     {isLoading ? "Adding...":"Add to cart"}
                 </button>

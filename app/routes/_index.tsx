@@ -90,7 +90,7 @@ export default function Index() {
             </div>
             {/* if there is a next page: show load-more-button; handle load more onclick */}
             {hasNextPage ? (
-                <button onClick={() => handleLoadMore()} className="w-full mt-8 md:max-w-md mx-auto py-3 px-4 text-white text-xs md:text-lg uppercase bg-black font-light">
+                <button onClick={() => handleLoadMore()} disabled={isLoading} className="w-full mt-8 md:max-w-md mx-auto py-3 px-4 text-white text-xs md:text-lg uppercase bg-black font-light">
                     {/* show loading while loading */}
                     {isLoading ? "Loading...":"Load More"}
                 </button>

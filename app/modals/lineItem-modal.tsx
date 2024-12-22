@@ -29,7 +29,7 @@ export default function LineItemModal({
                 {/* lineItemId to remove from the cart */}
                 <input type="hidden" name="lineItemId" value={lineItem.id} />
                 {/* button to submit form */}
-                <button type="submit" className="mt-auto w-28 py-2 px-4 text-white bg-black text-sm font-light">
+                <button type="submit" disabled={isLoading} className="mt-auto w-28 py-2 px-4 text-white bg-black text-sm font-light">
                     {/* update user if action is still in progress */}
                     {isLoading ? "Removing...":"Remove"}
                 </button>
