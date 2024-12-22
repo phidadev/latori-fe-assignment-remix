@@ -1,13 +1,17 @@
 import { useFetcher } from "@remix-run/react";
 import type { LineItem } from "../utils/cart";
 
+// LineItemModal to display a single line item
 export default function LineItemModal({
     lineItem,
 }: {lineItem: LineItem}) {
     const purchasable = lineItem.purchasable ?? null;
+    // check if purchasable with the data exists, otherwise dont't render lineItem
     if(purchasable == null) return null;
     
+    // fetcher for dynamic submitting and accessing date and state
     const fetcher = useFetcher();
+    // access state for loading "animation"
     const isLoading = fetcher.state == "loading";
 
     return (
@@ -18,10 +22,15 @@ export default function LineItemModal({
                 <p>${purchasable.price}</p>
                 <p>Qty: {lineItem.qty}</p>
             </div>
+            {/* fetcher form for submitting data without page reload */}
             <fetcher.Form method="post" action="/" className="w-max h-max shrink-0 my-auto">
+                {/* intent for the action function */}
                 <input type="hidden" name="intent" value="remove-line-item" />
+                {/* lineItemId to remove from the cart */}
                 <input type="hidden" name="lineItemId" value={lineItem.id} />
+                {/* button to submit form */}
                 <button type="submit" className="mt-auto w-28 py-2 px-4 text-white bg-black text-sm font-light">
+                    {/* update user if action is still in progress */}
                     {isLoading ? "Removing...":"Remove"}
                 </button>
             </fetcher.Form>
