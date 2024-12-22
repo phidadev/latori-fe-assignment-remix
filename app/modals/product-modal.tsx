@@ -22,7 +22,7 @@ export default function ProductModal({
                 <p className="w-full text-gray-700">${product.price}</p>
             </div>
             {/* Fetcher Form to send data without reloading the page */}
-            <productFetcher.Form method="post" action="/" className="ml-10 md:ml-0 mt-auto mb-auto md:mb-0 w-max h-max">
+            <productFetcher.Form method="post" action="/" className="ml-10 md:ml-0 mt-auto mb-auto md:mb-0 w-max md:w-full h-max">
                 {/* intent for the action function */}
                 <input type="hidden" name="intent" value="add-to-cart" />
                 {/* product to add to the cart */}
