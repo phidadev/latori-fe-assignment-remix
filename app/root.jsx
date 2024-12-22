@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -24,7 +25,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1 className="text-black">Hello world!</h1>
+        <header className="sticky top-0 w-full bg-black px-4 py-4">
+          <div className="w-full max-w-5xl mx-auto text-white text-sm md:text-lg font-normal flex justify-between">
+            <Link to={"/"}>Product List</Link>
+            <Link to={"/"}>Open Cart</Link>
+          </div>
+        </header>
         <Outlet />
 
         <Scripts />
