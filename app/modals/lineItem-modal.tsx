@@ -17,7 +17,7 @@ export default function LineItemModal({
     return (
         <div className="w-full flex items-stretch gap-4">
             <img className="w-20 h-auto shrink-0 self-start aspect-square object-cover object-center" src={purchasable.images[0] ?? ""} alt={`Product ${purchasable.title}`} />
-            <div className="w-full h-auto flex flex-col gap-3 justify-between text-black text-sm font-light">
+            <div className="w-full h-auto flex flex-col gap-2 md:gap-3 justify-between text-black text-sm font-light">
                 <p>{purchasable.title}</p>
                 <p>${purchasable.price}</p>
                 <p>Qty: {lineItem.qty}</p>

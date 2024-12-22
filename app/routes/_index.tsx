@@ -82,7 +82,7 @@ export default function Index() {
 
     return (
         <div className="w-full px-4 flex flex-col mb-12">
-            <div className="w-full max-w-5xl mx-auto py-4 grid grid-cols-3 gap-x-5 gap-y-3">
+            <div className="w-full max-w-5xl mx-auto py-4 flex flex-col md:grid md:grid-cols-3 md:gap-x-5 gap-y-5 md:gap-y-3">
                 {/* Map products to ProductModal view */}
                 {products.map(p => (
                     <ProductModal key={`product-${p.id}`} product={p}/>
@@ -90,7 +90,7 @@ export default function Index() {
             </div>
             {/* if there is a next page: show load-more-button; handle load more onclick */}
             {hasNextPage ? (
-                <button onClick={() => handleLoadMore()} className="w-full mt-8 max-w-md mx-auto py-3 px-4 text-white text-lg uppercase bg-black font-light">
+                <button onClick={() => handleLoadMore()} className="w-full mt-8 max-w-md mx-auto py-3 px-4 text-white text-xs md:text-lg uppercase bg-black font-light">
                     {/* show loading while loading */}
                     {isLoading ? "Loading...":"Load More"}
                 </button>
