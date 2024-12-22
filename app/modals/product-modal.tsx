@@ -6,9 +6,9 @@ import { useFetcher } from "@remix-run/react";
 // ProductModal to display a single product
 export default function ProductModal({
     product,
-}): {
+}: {
     product: Product,
-} {
+}) {
     // use fetcher for updating view
     const productFetcher = useFetcher();
     // check if fetcher is loading (adding product to cart)
