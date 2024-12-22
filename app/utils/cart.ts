@@ -15,7 +15,7 @@ export type Cart = {
 // adds a lineitem to the cart and returns the cart
 export function addLineItem(cart: Cart, productId: number): Cart {
     // if cart not exists, create a new one
-    if(cart === null) cart = getNewCart();
+    if(cart == null) cart = getNewCart();
     
     let lineItems = cart.lineItems ?? null;
     // if lineItems is null, create an empty array
