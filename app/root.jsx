@@ -31,7 +31,9 @@ export default function App() {
             <Link to={"/"}>Open Cart</Link>
           </div>
         </header>
-        <Outlet />
+        <div id="main">
+          <Outlet />
+        </div>
 
         <Scripts />
         <LiveReload />
