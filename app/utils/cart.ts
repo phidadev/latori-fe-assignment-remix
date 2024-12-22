@@ -37,6 +37,22 @@ export function addLineItem(cart: Cart, productId: number): Cart {
     return cart;
 }
 
+// removes a line item from the cart and returns updated cart
+export function removeLineItem(cart: Cart, lineItemId: number): Cart {
+    // if cart is not set return empty cart
+    if(cart == null) return getNewCart();
+
+    let lineItems = cart.lineItems ?? [];
+    // if no line items return cart
+    if(lineItems == null || !lineItems.length) return cart;
+
+    // filter line items based on lineItemId -> removes line item with the lineItemId from array
+    lineItems = lineItems.filter(li => li.id !== lineItemId);
+    cart.lineItems = lineItems;
+
+    return cart;
+}
+
 // creates a new empty cart and returns it
 export function getNewCart(): Cart {
     return {
