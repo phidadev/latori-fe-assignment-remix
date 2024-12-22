@@ -70,16 +70,20 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+      {/* if show cart, lock background */}
       <body className={`${cartIsVisible ? "overflow-hidden":""}`}>
         <header className="sticky top-0 w-full bg-black px-4 py-4">
           <div className="w-full max-w-5xl mx-auto text-white text-sm md:text-lg font-normal flex justify-between">
             <Link to={"/"}>Product List</Link>
+            {/* on click show the cart / set the visibility to true */}
             <button onClick={() => setCartIsVisible(true)}>Open Cart</button>
           </div>
         </header>
         <div id="main">
+          {/* route content */}
           <Outlet />
         </div>
+        {/* Global CartModal include */}
         <CartModal key={"cart"} isVisible={cartIsVisible} onHide={() => setCartIsVisible(false)} lineItems={lineItems} />
 
         <Scripts />
@@ -112,6 +116,7 @@ export const action = async ({
   // get intent from form data
   const intent = formData.intent;
 
+  // decide which case matches for intent
   switch(intent) {
     // add to cart logic
     case "add-to-cart": {
@@ -153,5 +158,6 @@ export const action = async ({
     }break;
   }
 
-  return json({ok: true});   
+  // can't handle action return ok=false
+  return json({ok: false});   
 }
