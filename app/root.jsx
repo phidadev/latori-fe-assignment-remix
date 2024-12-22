@@ -73,7 +73,7 @@ export default function App() {
       {/* if show cart, lock background */}
       <body className={`${cartIsVisible ? "overflow-hidden":""}`}>
         <header className="sticky top-0 w-full bg-black px-4 py-4">
-          <div className="w-full max-w-5xl mx-auto text-white text-sm md:text-lg font-normal flex justify-between">
+          <div className="w-full max-w-4xl mx-auto text-white text-xl md:text-lg font-normal flex justify-between">
             <Link to={"/"}>Product List</Link>
             {/* on click show the cart / set the visibility to true */}
             <button onClick={() => setCartIsVisible(true)}>Open Cart</button>

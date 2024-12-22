@@ -15,7 +15,7 @@ export default function ProductModal({
     const isLoading = productFetcher.state == "loading";
     
     return (
-        <div key={product.id} className="w-full h-full md:p-3 md:shadow md:rounded text-xs font-normal flex flex-row md:flex-col items-stretch md:items-start gap-x-2 md:gap-x-0">
+        <div key={product.id} className="w-full h-full md:p-3 md:shadow md:rounded text-sm flex flex-row md:flex-col items-stretch md:items-start gap-x-2 md:gap-x-0">
             <img className="w-20 md:w-full self-start aspect-square object-cover object-center md:mb-2" src={product.images[0] ?? ""} alt={`Product ${product.title}`} />
             <div className="w-full mb-3">
                 <p className="w-full mb-2">{product.title}</p>
@@ -28,7 +28,7 @@ export default function ProductModal({
                 {/* product to add to the cart */}
                 <input type="hidden" name="productId" value={product.id} />
                 {/* button to submit form */}
-                <button type="submit" disabled={isLoading} className="w-24 md:w-full py-2 md:py-3 px-2 md:px-4 whitespace-nowrap text-white uppercase bg-black font-thin">
+                <button type="submit" disabled={isLoading} className="w-24 md:w-full py-2 md:py-3 px-2 md:px-4 whitespace-nowrap text-xs md:text-sm text-white uppercase bg-black">
                     {/* update user if action is still in progress */}
                     {isLoading ? "Adding...":"Add to cart"}
                 </button>
