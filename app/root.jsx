@@ -11,6 +11,8 @@ import styles from "./tailwind.css";
 import { createCookieSessionStorage, json } from "@remix-run/node";
 import { addLineItem } from "./utils/cart"
 import { getProductById } from "./products";
+import CartModal from "./modals/cart-modal";
+import { useState } from "react";
 
 export const links = () => [
   { rel: "stylesheet", href: styles },
@@ -55,6 +57,9 @@ export default function App() {
   // set line items from loader data
   const lineItems = loaderData.lineItems ?? [];
 
+  // default visible state is false
+  const [cartIsVisible, setCartIsVisible] = useState(false);
+
   return (
     <html>
       <head>
@@ -65,16 +70,17 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={`${cartIsVisible ? "overflow-hidden":""}`}>
         <header className="sticky top-0 w-full bg-black px-4 py-4">
           <div className="w-full max-w-5xl mx-auto text-white text-sm md:text-lg font-normal flex justify-between">
             <Link to={"/"}>Product List</Link>
-            <Link to={"/"}>Open Cart</Link>
+            <button onClick={() => setCartIsVisible(true)}>Open Cart</button>
           </div>
         </header>
         <div id="main">
           <Outlet />
         </div>
+        <CartModal key={"cart"} isVisible={cartIsVisible} onHide={() => setCartIsVisible(false)} lineItems={lineItems} />
 
         <Scripts />
         <LiveReload />
