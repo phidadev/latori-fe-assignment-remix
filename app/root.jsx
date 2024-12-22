@@ -47,8 +47,8 @@ export const loader = async ({
     }));
   }
   
-  // returns the filled line items
-  return json({lineItems: filledLineItems});
+  // returns the filled line items when they have a purchasable
+  return json({lineItems: filledLineItems.filter(li => li.purchasable != null)});
 };
 
 export default function App() {
