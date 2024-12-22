@@ -1,4 +1,5 @@
 import type { LineItem } from "../utils/cart";
+import LineItemModal from "./lineItem-modal";
 
 export default function CartModal({
     isVisible,
@@ -19,9 +20,9 @@ export default function CartModal({
                         X
                     </button>
                 </div>
-                <div className="w-full h-full px-4 py-4 flex flex-col gap-3">
+                <div className="w-full h-auto py-4 flex flex-col gap-3">
                     {lineItems.length ? lineItems.map(li => (
-                        <p key={li.id}>{li.purchasable?.title}</p>
+                        <LineItemModal key={li.id} lineItem={li} />
                     ))
                     :(
                         <p className="mx-auto my-12 italic">Cart is empty</p>
