@@ -20,11 +20,13 @@ const products = {
         return products;
     },
     // get product by id, returns promise with a single Product
-    async getProductById(productId: number): Promise<Product> {
+    async getProductById(productId: number): Promise<Product | null> {
         // fetch product with productId
         const response = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`);
         // transform response data from json to product
-        const product = response.json();
+        const product = await response.json();
+        // check if response has errors / product does not exist; then return null Promise
+        if(product.message !== undefined) return Promise.resolve(null);
         // returns the product
         return product;
     }
@@ -39,5 +41,5 @@ export async function getProducts(page: number, itemsPerPage: number): Promise<P
 // async function, "export" to import and use in other files
 // get product by id, uses the products service
 export async function getProductById(productId: number) {
-    return await products.getProductById(productId);
+    return products.getProductById(productId);
 }
